@@ -3,6 +3,7 @@ import Sequelize from 'sequelize';
 // Setup Sequelize
 const sequelize = new Sequelize('addressbook', 'postgres', 'postgres', {
   dialect: 'postgres',
+  operatorsAliases: Sequelize.Op,
   define: {
     underscored: true,
   },

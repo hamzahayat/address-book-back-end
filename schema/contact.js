@@ -1,21 +1,26 @@
 export default `
   type Contact {
-    id: String!
+    id: Int!
     firstName: String!
     lastName: String!
     email: String!
     user: User!
   }
-  type Query{
+
+  type Query {
     getContact(id: Int!): Contact!
-    getAllContacts(user_id: Int!): [Contact!]!
+    getAllContacts: [Contact!]!
   }
 
-  type CreateContactResponse {
+  type ContactResponse {
     ok: Boolean!
     errors: [Error!]
+    contact: Contact
   }
+
   type Mutation {
-    addContact(firstName: String!, lastName: String!, email: String!): CreateContactResponse!
+    createContact(firstName: String!, lastName: String, email: String): ContactResponse!
+    updateContact(id: Int!, firstName:String, lastName: String, email: String): ContactResponse!
+    deleteContact(id: Int!): ContactResponse!
   }
 `;

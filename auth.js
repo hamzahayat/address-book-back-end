@@ -80,7 +80,7 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
   if (!user) {
     return {
       ok: false,
-      errors: [{ path: 'email', message: 'Wrong email' }],
+      errors: [{ path: 'email', message: 'Account does not exist' }],
     };
   }
 
@@ -90,7 +90,7 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
   if (!valid) {
     return {
       ok: false,
-      errors: [{ path: 'password', message: 'Wrong password' }],
+      errors: [{ path: 'password', message: 'Incorrect password' }],
     };
   }
 
@@ -106,5 +106,6 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     ok: true,
     token,
     refreshToken,
+    userName: `${user.firstName} ${user.lastName}`,
   };
 };
