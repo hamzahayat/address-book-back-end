@@ -22,7 +22,7 @@ export default `
     token: String
     refreshToken: String
     errors: [Error!]
-    userName: String!
+    userName: String
   }
 
   type Mutation {

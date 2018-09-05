@@ -1,5 +1,4 @@
 // Declare Imports
-import bcrypt from 'bcrypt';
 import _ from 'lodash';
 
 // Import Auth and Errors Function
@@ -8,8 +7,7 @@ import formatErrors from '../formatErrors';
 
 export default {
   Query: {
-    getUser: (parent, { id }, { models }) =>
-      models.User.findOne({ where: { id } }),
+    getUser: (parent, { id }, { models }) => models.User.findOne({ where: { id } }),
     getAllUsers: (parent, args, { models }) => models.User.findAll(),
   },
   Mutation: {
@@ -18,7 +16,6 @@ export default {
     registerUser: async (parent, args, { models }) => {
       try {
         const user = await models.User.create(args);
-
         return {
           ok: true,
           user,

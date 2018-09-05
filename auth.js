@@ -26,13 +26,7 @@ export const createTokens = async (user, secret, secret2) => {
   return [createToken, createRefreshToken];
 };
 
-export const refreshTokens = async (
-  token,
-  refreshToken,
-  models,
-  SECRET,
-  SECRET2,
-) => {
+export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2) => {
   let userId = 0;
   try {
     const {
@@ -61,11 +55,7 @@ export const refreshTokens = async (
     return {};
   }
 
-  const [newToken, newRefreshToken] = await createTokens(
-    user,
-    SECRET,
-    refreshSecret,
-  );
+  const [newToken, newRefreshToken] = await createTokens(user, SECRET, refreshSecret);
   return {
     token: newToken,
     refreshToken: newRefreshToken,
@@ -96,11 +86,7 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
 
   const refreshTokenSecret = user.password + SECRET2;
 
-  const [token, refreshToken] = await createTokens(
-    user,
-    SECRET,
-    refreshTokenSecret,
-  );
+  const [token, refreshToken] = await createTokens(user, SECRET, refreshTokenSecret);
 
   return {
     ok: true,

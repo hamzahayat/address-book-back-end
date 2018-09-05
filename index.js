@@ -20,9 +20,7 @@ const SECRET2 = 'mayfifteentwentyeighteenefgh';
 
 // Declare Resolvers and Schema From Folders, and merge files
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
-const resolvers = mergeResolvers(
-  fileLoader(path.join(__dirname, './resolvers')),
-);
+const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
 
 // Execute Schema
 const schema = makeExecutableSchema({
@@ -42,13 +40,7 @@ const addUser = async (req, res, next) => {
       req.user = user;
     } catch (err) {
       const refreshToken = req.headers['x-refresh-token'];
-      const newTokens = await refreshTokens(
-        token,
-        refreshToken,
-        models,
-        SECRET,
-        SECRET2,
-      );
+      const newTokens = await refreshTokens(token, refreshToken, models, SECRET, SECRET2);
       if (newTokens.token && newTokens.refreshToken) {
         res.set('Access-Control-Expose-Headers', 'x-token, x-refresh-token');
         res.set('x-token', newTokens.token);

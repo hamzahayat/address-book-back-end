@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 // Setup Sequelize
-const sequelize = new Sequelize('addressbook', 'postgres', 'postgres', {
+const sequelize = new Sequelize('addressbook', 'postgres', 'password', {
   dialect: 'postgres',
   operatorsAliases: Sequelize.Op,
   define: {
